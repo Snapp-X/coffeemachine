@@ -11,7 +11,7 @@ const _clientIdentifier = 'FlutterClient';
 
 var pongCount = 0; // Pong counter
 
-Future<int> initMqtt() async {
+Future<int> connectMqtt() async {
   _client.logging(on: true);
 
   /// Set the correct MQTT protocol for mosquito
