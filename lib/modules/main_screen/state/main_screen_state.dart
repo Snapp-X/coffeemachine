@@ -55,11 +55,36 @@ class MainScreenViewModel extends StateNotifier<MainScreenState> {
     }
   }
 
-  Future<void> write() async {}
+  void changeValue(MqttValue mqttValue, bool isIncrease) {
+    final value = isIncrease ? 1 : -1;
+    final topic = mqttValue;
+    double? currentValue;
+    switch (mqttValue) {
+      case MqttValue.currentTemperature:
+        return;
+      case MqttValue.targetTemperature:
+        currentValue = state.targetTemperature;
+        break;
+      case MqttValue.varP:
+        currentValue = state.varP;
+        break;
+      case MqttValue.varI:
+        currentValue = state.varI;
+        break;
+      case MqttValue.varD:
+        currentValue = state.varD;
+        break;
+    }
+
+    if (currentValue != null) {
+      final newValue = (currentValue + value).toStringAsFixed(0);
+      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      print(newValue);
+      _mqttClient.publish(newValue, topic);
+    }
+  }
 
   void subscriptionCallback(String messageValue, String topic) {
-    print(topic);
-    print(messageValue);
     final topicSuffix = topic.split('/').last;
     switch (topicSuffix) {
       case MqttClient.currentTemperature:

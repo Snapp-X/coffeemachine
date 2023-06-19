@@ -1,21 +1,25 @@
+import 'package:coffeemachine/data/repositories/mqtt_client.dart';
 import 'package:coffeemachine/modules/main_screen/widgets/single_control.dart';
 import 'package:coffeemachine/modules/main_screen/widgets/status_display.dart';
 import 'package:flutter/material.dart';
 
 class PidControls extends StatelessWidget {
-  const PidControls(
-      {super.key,
-      required this.currentTemperature,
-      required this.targetTemperature,
-      required this.varP,
-      required this.varI,
-      required this.varD});
+  const PidControls({
+    super.key,
+    required this.currentTemperature,
+    required this.targetTemperature,
+    required this.varP,
+    required this.varI,
+    required this.varD,
+    required this.changeValue,
+  });
 
   final double? currentTemperature;
   final double? targetTemperature;
   final double? varP;
   final double? varI;
   final double? varD;
+  final Function(MqttValue value, bool isIncrease) changeValue;
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +33,34 @@ class PidControls extends StatelessWidget {
         SingleControl(
             label: 'CURRENT TEMPERATURE',
             value: '${currentTemperature ?? '--'} °C'),
-        const SizedBox(height: 10),
+        const SizedBox(height: 7),
         SingleControl(
-            label: 'TARGET TEMPERATURE',
-            value: '${targetTemperature ?? '--'} °C'),
-        const SizedBox(height: 30),
-        SingleControl(label: 'P', value: '${varP ?? '--'}'),
-        const SizedBox(height: 10),
-        SingleControl(label: 'I', value: '${varI ?? '--'}'),
-        const SizedBox(height: 10),
-        SingleControl(label: 'D', value: '${varD ?? '--'}'),
+          label: 'TARGET TEMPERATURE',
+          value: '${targetTemperature ?? '--'} °C',
+          onDecrease: () => changeValue(MqttValue.targetTemperature, false),
+          onIncrease: () => changeValue(MqttValue.targetTemperature, true),
+        ),
+        const SizedBox(height: 25),
+        SingleControl(
+          label: 'P',
+          value: '${varP ?? '--'}',
+          onDecrease: () => changeValue(MqttValue.varP, false),
+          onIncrease: () => changeValue(MqttValue.varP, true),
+        ),
+        const SizedBox(height: 7),
+        SingleControl(
+          label: 'I',
+          value: '${varI ?? '--'}',
+          onDecrease: () => changeValue(MqttValue.varI, false),
+          onIncrease: () => changeValue(MqttValue.varI, true),
+        ),
+        const SizedBox(height: 7),
+        SingleControl(
+          label: 'D',
+          value: '${varD ?? '--'}',
+          onDecrease: () => changeValue(MqttValue.varD, false),
+          onIncrease: () => changeValue(MqttValue.varD, true),
+        )
       ],
     );
   }

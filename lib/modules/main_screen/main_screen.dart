@@ -32,6 +32,8 @@ class MainScreen extends ConsumerWidget {
                   varP: state.varP,
                   varI: state.varI,
                   varD: state.varD,
+                  changeValue:
+                      ref.read(mainScreenStateProvider.notifier).changeValue,
                 ),
               ),
             ),

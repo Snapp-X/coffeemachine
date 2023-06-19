@@ -3,12 +3,13 @@ import 'package:coffeemachine/data/constants/images.dart';
 import 'package:flutter/material.dart';
 
 class SingleControl extends StatelessWidget {
-  const SingleControl(
-      {super.key,
-      required this.value,
-      required this.label,
-      this.onIncrease,
-      this.onDecrease});
+  const SingleControl({
+    super.key,
+    required this.value,
+    required this.label,
+    this.onIncrease,
+    this.onDecrease,
+  });
 
   final String value;
   final String label;

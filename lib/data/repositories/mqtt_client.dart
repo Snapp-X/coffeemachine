@@ -19,6 +19,7 @@ class MqttClient {
   static const varP = 'aggKp';
   static const varI = 'aggTn';
   static const varD = 'aggTv';
+  static const topicPrefix = 'flutter/Coffeemachine.fluttercoffee/';
 
   late final _client = MqttServerClient(_broker, 'asdasdasd');
 
@@ -77,7 +78,6 @@ class MqttClient {
 
   Future<void> subscribeTo(List<MqttValue> topics,
       Function(String payload, String topic) callback) async {
-    const topicPrefix = 'flutter/Coffeemachine.fluttercoffee/';
     for (final topic in topics) {
       switch (topic) {
         case MqttValue.currentTemperature:
@@ -107,6 +107,32 @@ class MqttClient {
           MqttPublishPayload.bytesToStringAsString(message.payload.message);
       callback.call(payload, messageTopic);
     });
+  }
+
+  Future<void> publish(String value, MqttValue topic) async {
+    final builder = MqttClientPayloadBuilder();
+    var pubTopic = '';
+
+    switch (topic) {
+      case MqttValue.currentTemperature:
+        return;
+      case MqttValue.targetTemperature:
+        pubTopic = '$topicPrefix$targetTemperature';
+        break;
+      case MqttValue.varP:
+        pubTopic = '$topicPrefix$varP';
+        break;
+      case MqttValue.varI:
+        pubTopic = '$topicPrefix$varI';
+        break;
+      case MqttValue.varD:
+        pubTopic = '$topicPrefix$varD';
+        break;
+    }
+
+    builder.addString(value);
+    _client.publishMessage(
+        '${pubTopic}/set', MqttQos.exactlyOnce, builder.payload!);
   }
 
   /// Subscribed callback
