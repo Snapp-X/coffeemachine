@@ -41,7 +41,7 @@ class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
           varI: null,
         )) {
     Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (DateTime.now().difference(_lastUpdate) > const Duration(seconds: 3)) {
+      if (DateTime.now().difference(_lastUpdate) > const Duration(seconds: 5)) {
         state = state.copyWith(machineOnline: false);
       }
     });
