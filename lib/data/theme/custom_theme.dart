@@ -8,68 +8,32 @@ ThemeData buildCustomThemeData(BuildContext context) {
       primary: AppColors.primary,
       secondary: AppColors.primary,
     ),
-    textTheme: TextTheme(
-      headlineMedium: const TextStyle(
+    textTheme: const TextTheme(
+      headlineMedium: TextStyle(
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
         fontSize: 18,
         color: AppColors.headlineColor,
       ),
-      headlineSmall: TextStyle(
-        fontFamily: 'Switzer',
-        fontWeight: FontWeight.w300,
-        fontSize: 18,
-        color: Colors.white.withOpacity(0.3),
-      ),
-      bodyLarge: TextStyle(
-        fontFamily: 'Switzer',
-        fontWeight: FontWeight.w500,
-        fontSize: MediaQuery.of(context).size.width * 0.013,
-        color: Colors.white,
-      ),
-      bodyMedium: TextStyle(
-        fontFamily: 'Switzer',
-        fontWeight: FontWeight.w500,
-        fontSize: 18,
-        color: Colors.white.withOpacity(0.5),
-      ),
-      bodySmall: TextStyle(
-        fontFamily: 'Switzer',
-        fontWeight: FontWeight.w300,
-        fontSize: MediaQuery.of(context).size.width * 0.013,
-        color: Colors.white.withOpacity(0.3),
-      ),
-      displayMedium: TextStyle(
-        fontFamily: 'Switzer',
-        fontWeight: FontWeight.w500,
-        fontSize: 35,
-        color: Colors.white,
-      ),
-      displaySmall: const TextStyle(
-        fontFamily: 'Switzer',
-        fontWeight: FontWeight.w500,
-        fontSize: 20.0,
-        color: Colors.white,
-      ),
-      displayLarge: const TextStyle(
+      displayLarge: TextStyle(
         fontFamily: 'Clash Grotesk Display',
         fontWeight: FontWeight.w600,
         fontSize: 47,
         color: Colors.white,
       ),
-      labelSmall: const TextStyle(
+      labelSmall: TextStyle(
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
         fontSize: 10.0,
         color: AppColors.fontColorLight,
       ),
-      labelMedium: const TextStyle(
+      labelMedium: TextStyle(
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
         fontSize: 12.0,
         color: AppColors.fontColorDark,
       ),
-      labelLarge: const TextStyle(
+      labelLarge: TextStyle(
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
         fontSize: 24.0,

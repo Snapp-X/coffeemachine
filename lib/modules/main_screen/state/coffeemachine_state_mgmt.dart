@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:coffeemachine/data/repositories/mqtt_client.dart';
@@ -11,7 +12,7 @@ class CoffeemachineState with _$CoffeemachineState {
   const factory CoffeemachineState({
     required bool machineOnline,
     required bool isErrorState,
-    required bool isLoading,
+    required bool isInitial,
     required double? currentTemperature,
     required double? targetTemperature,
     required double? varP,
@@ -26,19 +27,30 @@ final coffeemachineStateProvider = StateNotifierProvider.autoDispose<
 
 class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
   final MqttClient _mqttClient;
+  bool isFirstRun = true;
+  DateTime _lastUpdate = DateTime.now();
   CoffeemachineStateMgmt(this._mqttClient)
       : super(const CoffeemachineState(
           machineOnline: false,
           isErrorState: false,
-          isLoading: true,
+          isInitial: true,
           currentTemperature: null,
           targetTemperature: null,
           varP: null,
           varD: null,
           varI: null,
-        ));
+        )) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (DateTime.now().difference(_lastUpdate) > const Duration(seconds: 3)) {
+        state = state.copyWith(machineOnline: false);
+      }
+    });
+  }
 
   Future<void> init() async {
+    if (!state.isInitial) {
+      return;
+    }
     final subscriptionTopics = [
       MqttValue.currentTemperature,
       MqttValue.targetTemperature,
@@ -49,7 +61,7 @@ class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
     try {
       await _mqttClient.connect();
       await _mqttClient.subscribeTo(subscriptionTopics, subscriptionCallback);
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(isInitial: false);
     } catch (e) {
       state = state.copyWith(isErrorState: true);
     }
@@ -84,6 +96,14 @@ class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
 
   void subscriptionCallback(String messageValue, String topic) {
     final topicSuffix = topic.split('/').last;
+
+    ///When starting for the first time, the last known values will be received, even if the machine is offline,
+    ///We can use that behaviour for our PID values, but we don't want to read the last known temperature
+
+    if (isFirstRun && topicSuffix == MqttClient.currentTemperature) {
+      isFirstRun = false;
+      return;
+    }
     switch (topicSuffix) {
       case MqttClient.currentTemperature:
         currentTemperatureCallback(messageValue);
@@ -106,24 +126,24 @@ class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
   }
 
   void currentTemperatureCallback(String temperature) {
+    _lastUpdate = DateTime.now();
     state = state.copyWith(
         currentTemperature: double.tryParse(temperature), machineOnline: true);
   }
 
   void targetTemperatureCallback(String temperature) {
-    state = state.copyWith(
-        targetTemperature: double.tryParse(temperature), machineOnline: true);
+    state = state.copyWith(targetTemperature: double.tryParse(temperature));
   }
 
   void varPCallback(String varP) {
-    state = state.copyWith(varP: double.tryParse(varP), machineOnline: true);
+    state = state.copyWith(varP: double.tryParse(varP));
   }
 
   void varICallback(String varI) {
-    state = state.copyWith(varI: double.tryParse(varI), machineOnline: true);
+    state = state.copyWith(varI: double.tryParse(varI));
   }
 
   void varDCallback(String varD) {
-    state = state.copyWith(varD: double.tryParse(varD), machineOnline: true);
+    state = state.copyWith(varD: double.tryParse(varD));
   }
 }

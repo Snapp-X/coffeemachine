@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CoffeemachineState {
   bool get machineOnline => throw _privateConstructorUsedError;
   bool get isErrorState => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isInitial => throw _privateConstructorUsedError;
   double? get currentTemperature => throw _privateConstructorUsedError;
   double? get targetTemperature => throw _privateConstructorUsedError;
   double? get varP => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $CoffeemachineStateCopyWith<$Res> {
   $Res call(
       {bool machineOnline,
       bool isErrorState,
-      bool isLoading,
+      bool isInitial,
       double? currentTemperature,
       double? targetTemperature,
       double? varP,
@@ -62,7 +62,7 @@ class _$CoffeemachineStateCopyWithImpl<$Res, $Val extends CoffeemachineState>
   $Res call({
     Object? machineOnline = null,
     Object? isErrorState = null,
-    Object? isLoading = null,
+    Object? isInitial = null,
     Object? currentTemperature = freezed,
     Object? targetTemperature = freezed,
     Object? varP = freezed,
@@ -78,9 +78,9 @@ class _$CoffeemachineStateCopyWithImpl<$Res, $Val extends CoffeemachineState>
           ? _value.isErrorState
           : isErrorState // ignore: cast_nullable_to_non_nullable
               as bool,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      isInitial: null == isInitial
+          ? _value.isInitial
+          : isInitial // ignore: cast_nullable_to_non_nullable
               as bool,
       currentTemperature: freezed == currentTemperature
           ? _value.currentTemperature
@@ -117,7 +117,7 @@ abstract class _$$_CoffeemachineStateCopyWith<$Res>
   $Res call(
       {bool machineOnline,
       bool isErrorState,
-      bool isLoading,
+      bool isInitial,
       double? currentTemperature,
       double? targetTemperature,
       double? varP,
@@ -138,7 +138,7 @@ class __$$_CoffeemachineStateCopyWithImpl<$Res>
   $Res call({
     Object? machineOnline = null,
     Object? isErrorState = null,
-    Object? isLoading = null,
+    Object? isInitial = null,
     Object? currentTemperature = freezed,
     Object? targetTemperature = freezed,
     Object? varP = freezed,
@@ -154,9 +154,9 @@ class __$$_CoffeemachineStateCopyWithImpl<$Res>
           ? _value.isErrorState
           : isErrorState // ignore: cast_nullable_to_non_nullable
               as bool,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      isInitial: null == isInitial
+          ? _value.isInitial
+          : isInitial // ignore: cast_nullable_to_non_nullable
               as bool,
       currentTemperature: freezed == currentTemperature
           ? _value.currentTemperature
@@ -188,7 +188,7 @@ class _$_CoffeemachineState implements _CoffeemachineState {
   const _$_CoffeemachineState(
       {required this.machineOnline,
       required this.isErrorState,
-      required this.isLoading,
+      required this.isInitial,
       required this.currentTemperature,
       required this.targetTemperature,
       required this.varP,
@@ -200,7 +200,7 @@ class _$_CoffeemachineState implements _CoffeemachineState {
   @override
   final bool isErrorState;
   @override
-  final bool isLoading;
+  final bool isInitial;
   @override
   final double? currentTemperature;
   @override
@@ -214,7 +214,7 @@ class _$_CoffeemachineState implements _CoffeemachineState {
 
   @override
   String toString() {
-    return 'CoffeemachineState(machineOnline: $machineOnline, isErrorState: $isErrorState, isLoading: $isLoading, currentTemperature: $currentTemperature, targetTemperature: $targetTemperature, varP: $varP, varD: $varD, varI: $varI)';
+    return 'CoffeemachineState(machineOnline: $machineOnline, isErrorState: $isErrorState, isInitial: $isInitial, currentTemperature: $currentTemperature, targetTemperature: $targetTemperature, varP: $varP, varD: $varD, varI: $varI)';
   }
 
   @override
@@ -226,8 +226,8 @@ class _$_CoffeemachineState implements _CoffeemachineState {
                 other.machineOnline == machineOnline) &&
             (identical(other.isErrorState, isErrorState) ||
                 other.isErrorState == isErrorState) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
+            (identical(other.isInitial, isInitial) ||
+                other.isInitial == isInitial) &&
             (identical(other.currentTemperature, currentTemperature) ||
                 other.currentTemperature == currentTemperature) &&
             (identical(other.targetTemperature, targetTemperature) ||
@@ -239,7 +239,7 @@ class _$_CoffeemachineState implements _CoffeemachineState {
 
   @override
   int get hashCode => Object.hash(runtimeType, machineOnline, isErrorState,
-      isLoading, currentTemperature, targetTemperature, varP, varD, varI);
+      isInitial, currentTemperature, targetTemperature, varP, varD, varI);
 
   @JsonKey(ignore: true)
   @override
@@ -253,7 +253,7 @@ abstract class _CoffeemachineState implements CoffeemachineState {
   const factory _CoffeemachineState(
       {required final bool machineOnline,
       required final bool isErrorState,
-      required final bool isLoading,
+      required final bool isInitial,
       required final double? currentTemperature,
       required final double? targetTemperature,
       required final double? varP,
@@ -265,7 +265,7 @@ abstract class _CoffeemachineState implements CoffeemachineState {
   @override
   bool get isErrorState;
   @override
-  bool get isLoading;
+  bool get isInitial;
   @override
   double? get currentTemperature;
   @override

@@ -29,6 +29,7 @@ class MainScreen extends ConsumerWidget {
                   horizontal: Spacings.m,
                 ),
                 child: PidControls(
+                  isOnline: state.machineOnline,
                   currentTemperature: state.currentTemperature,
                   targetTemperature: state.targetTemperature,
                   varP: state.varP,

@@ -9,10 +9,12 @@ class SingleControl extends StatelessWidget {
     required this.label,
     this.onIncrease,
     this.onDecrease,
+    required this.isOnline,
   });
 
   final String value;
   final String label;
+  final bool isOnline;
   final VoidCallback? onIncrease;
   final VoidCallback? onDecrease;
 
@@ -55,7 +57,7 @@ class SingleControl extends StatelessWidget {
                   Positioned(
                     right: 0,
                     child: GestureDetector(
-                      onTap: onIncrease,
+                      onTap: isOnline ? onIncrease : null,
                       child: Image.asset(
                         AppImages.increaseButton,
                         fit: BoxFit.scaleDown,
@@ -67,7 +69,7 @@ class SingleControl extends StatelessWidget {
                   Positioned(
                     left: 0,
                     child: GestureDetector(
-                      onTap: onDecrease,
+                      onTap: isOnline ? onDecrease : null,
                       child: Image.asset(
                         AppImages.decreaseButton,
                         fit: BoxFit.scaleDown,

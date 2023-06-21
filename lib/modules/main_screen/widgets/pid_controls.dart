@@ -12,6 +12,7 @@ class PidControls extends StatelessWidget {
     required this.varI,
     required this.varD,
     required this.changeValue,
+    required this.isOnline,
   });
 
   final double? currentTemperature;
@@ -19,6 +20,7 @@ class PidControls extends StatelessWidget {
   final double? varP;
   final double? varI;
   final double? varD;
+  final bool isOnline;
   final Function(MqttValue value, bool isIncrease) changeValue;
 
   @override
@@ -26,19 +28,24 @@ class PidControls extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const StatusDisplay(),
+        StatusDisplay(
+          isOnline: isOnline,
+        ),
         const SizedBox(
           height: 35,
         ),
         SingleControl(
-            label: 'CURRENT TEMPERATURE',
-            value: '${currentTemperature ?? '--'} °C'),
+          label: 'CURRENT TEMPERATURE',
+          value: '${currentTemperature ?? '--'} °C',
+          isOnline: isOnline,
+        ),
         const SizedBox(height: 7),
         SingleControl(
           label: 'TARGET TEMPERATURE',
           value: '${targetTemperature ?? '--'} °C',
           onDecrease: () => changeValue(MqttValue.targetTemperature, false),
           onIncrease: () => changeValue(MqttValue.targetTemperature, true),
+          isOnline: isOnline,
         ),
         const SizedBox(height: 25),
         SingleControl(
@@ -46,6 +53,7 @@ class PidControls extends StatelessWidget {
           value: '${varP ?? '--'}',
           onDecrease: () => changeValue(MqttValue.varP, false),
           onIncrease: () => changeValue(MqttValue.varP, true),
+          isOnline: isOnline,
         ),
         const SizedBox(height: 7),
         SingleControl(
@@ -53,6 +61,7 @@ class PidControls extends StatelessWidget {
           value: '${varI ?? '--'}',
           onDecrease: () => changeValue(MqttValue.varI, false),
           onIncrease: () => changeValue(MqttValue.varI, true),
+          isOnline: isOnline,
         ),
         const SizedBox(height: 7),
         SingleControl(
@@ -60,6 +69,7 @@ class PidControls extends StatelessWidget {
           value: '${varD ?? '--'}',
           onDecrease: () => changeValue(MqttValue.varD, false),
           onIncrease: () => changeValue(MqttValue.varD, true),
+          isOnline: isOnline,
         )
       ],
     );
