@@ -2,7 +2,7 @@
 
 import 'package:coffeemachine/data/constants/colors.dart';
 import 'package:coffeemachine/data/constants/spacings.dart';
-import 'package:coffeemachine/modules/main_screen/modules/coffeemachine_chart/state/coffeemachine_chart_state.dart';
+import 'package:coffeemachine/modules/main_screen/modules/coffeemachine_chart/state/coffeemachine_chart_state_mgmt.dart';
 import 'package:coffeemachine/modules/main_screen/modules/coffeemachine_chart/widgets/legend_item.dart';
 import 'package:coffeemachine/modules/main_screen/state/temperatures_stream.dart';
 import 'package:fl_chart/fl_chart.dart';

@@ -4,7 +4,7 @@ import 'package:coffeemachine/data/repositories/mqtt_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'coffeemachine_state.freezed.dart';
+part 'coffeemachine_state_mgmt.freezed.dart';
 
 @freezed
 class CoffeemachineState with _$CoffeemachineState {

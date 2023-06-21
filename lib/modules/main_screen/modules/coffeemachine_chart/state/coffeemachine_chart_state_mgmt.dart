@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'coffeemachine_chart_state.freezed.dart';
+part 'coffeemachine_chart_state_mgmt.freezed.dart';
 
 @freezed
 class CoffeemachineChartState with _$CoffeemachineChartState {

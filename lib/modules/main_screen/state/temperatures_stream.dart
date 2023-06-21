@@ -1,4 +1,4 @@
-import 'package:coffeemachine/modules/main_screen/state/coffeemachine_state.dart';
+import 'package:coffeemachine/modules/main_screen/state/coffeemachine_state_mgmt.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final temperaturesStreamProvider =

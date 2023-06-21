@@ -1,6 +1,6 @@
 import 'package:coffeemachine/data/constants/colors.dart';
 import 'package:coffeemachine/data/constants/spacings.dart';
-import 'package:coffeemachine/modules/main_screen/state/coffeemachine_state.dart';
+import 'package:coffeemachine/modules/main_screen/state/coffeemachine_state_mgmt.dart';
 import 'package:coffeemachine/modules/main_screen/widgets/pid_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
