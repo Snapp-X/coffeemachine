@@ -4,11 +4,11 @@ import 'package:coffeemachine/data/repositories/mqtt_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'main_screen_state.freezed.dart';
+part 'coffeemachine_state.freezed.dart';
 
 @freezed
-class MainScreenState with _$MainScreenState {
-  const factory MainScreenState({
+class CoffeemachineState with _$CoffeemachineState {
+  const factory CoffeemachineState({
     required bool machineOnline,
     required bool isErrorState,
     required bool isLoading,
@@ -17,17 +17,17 @@ class MainScreenState with _$MainScreenState {
     required double? varP,
     required double? varD,
     required double? varI,
-  }) = _MainScreenState;
+  }) = _CoffeemachineState;
 }
 
-final mainScreenStateProvider =
-    StateNotifierProvider.autoDispose<MainScreenViewModel, MainScreenState>(
-        (ref) => MainScreenViewModel(ref.read(mqttClientProvider))..init());
+final coffeemachineStateProvider = StateNotifierProvider.autoDispose<
+        CoffeemachineStateMgmt, CoffeemachineState>(
+    (ref) => CoffeemachineStateMgmt(ref.read(mqttClientProvider))..init());
 
-class MainScreenViewModel extends StateNotifier<MainScreenState> {
+class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
   final MqttClient _mqttClient;
-  MainScreenViewModel(this._mqttClient)
-      : super(const MainScreenState(
+  CoffeemachineStateMgmt(this._mqttClient)
+      : super(const CoffeemachineState(
           machineOnline: false,
           isErrorState: false,
           isLoading: true,
@@ -78,8 +78,6 @@ class MainScreenViewModel extends StateNotifier<MainScreenState> {
 
     if (currentValue != null) {
       final newValue = (currentValue + value).toStringAsFixed(0);
-      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-      print(newValue);
       _mqttClient.publish(newValue, topic);
     }
   }

@@ -38,7 +38,7 @@ class SingleControl extends StatelessWidget {
                 ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(100)),
                   child: Container(
-                    color: CoffeemachineColors.singleControlBackground,
+                    color: AppColors.singleControlBackground,
                     height: 35,
                     width: 300,
                     child: Center(
@@ -47,8 +47,7 @@ class SingleControl extends StatelessWidget {
                               .textTheme
                               .labelMedium
                               ?.copyWith(
-                                  color: CoffeemachineColors
-                                      .singleControlLabelOpaque)),
+                                  color: AppColors.singleControlLabelOpaque)),
                     ),
                   ),
                 ),
@@ -58,7 +57,7 @@ class SingleControl extends StatelessWidget {
                     child: GestureDetector(
                       onTap: onIncrease,
                       child: Image.asset(
-                        CoffeemachineImages.increaseButton,
+                        AppImages.increaseButton,
                         fit: BoxFit.scaleDown,
                         height: 35,
                       ),
@@ -70,7 +69,7 @@ class SingleControl extends StatelessWidget {
                     child: GestureDetector(
                       onTap: onDecrease,
                       child: Image.asset(
-                        CoffeemachineImages.decreaseButton,
+                        AppImages.decreaseButton,
                         fit: BoxFit.scaleDown,
                         height: 35,
                       ),

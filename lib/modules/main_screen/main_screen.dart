@@ -1,18 +1,20 @@
 import 'package:coffeemachine/data/constants/colors.dart';
 import 'package:coffeemachine/data/constants/spacings.dart';
-import 'package:coffeemachine/modules/main_screen/state/main_screen_state.dart';
+import 'package:coffeemachine/modules/main_screen/state/coffeemachine_state.dart';
 import 'package:coffeemachine/modules/main_screen/widgets/pid_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'modules/coffeemachine_chart/coffeemachine_chart.dart';
 
 class MainScreen extends ConsumerWidget {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(mainScreenStateProvider);
+    final state = ref.watch(coffeemachineStateProvider);
     return Container(
-      color: CoffeemachineColors.background,
+      color: AppColors.background,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: Spacings.m,
@@ -33,36 +35,17 @@ class MainScreen extends ConsumerWidget {
                   varI: state.varI,
                   varD: state.varD,
                   changeValue:
-                      ref.read(mainScreenStateProvider.notifier).changeValue,
+                      ref.read(coffeemachineStateProvider.notifier).changeValue,
                 ),
               ),
             ),
-            Expanded(
+            const Expanded(
               flex: 440,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: Spacings.m,
                 ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Temperature: ${state.targetTemperature}',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'varP: ${state.varP}',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'varI: ${state.varI}',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'varD: ${state.varD}',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
+                child: CoffeemachineChart(),
               ),
             ),
           ],

@@ -24,7 +24,7 @@ class StatusDisplay extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(100)),
               child: Container(
-                color: CoffeemachineColors.primary,
+                color: AppColors.primary,
                 height: 35,
                 width: 120,
                 child: Center(

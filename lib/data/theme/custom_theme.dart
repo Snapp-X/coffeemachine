@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 ThemeData buildCustomThemeData(BuildContext context) {
   return ThemeData(
-    scaffoldBackgroundColor: CoffeemachineColors.background,
-    colorScheme: ColorScheme.dark(
-      primary: CoffeemachineColors.primary,
-      secondary: CoffeemachineColors.primary,
+    scaffoldBackgroundColor: AppColors.background,
+    colorScheme: const ColorScheme.dark(
+      primary: AppColors.primary,
+      secondary: AppColors.primary,
     ),
     textTheme: TextTheme(
-      headlineMedium: TextStyle(
-        fontFamily: 'Switzer',
-        fontWeight: FontWeight.w500,
-        fontSize: MediaQuery.of(context).size.height * 0.013,
-        color: Colors.white.withOpacity(0.5),
+      headlineMedium: const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 18,
+        color: AppColors.headlineColor,
       ),
       headlineSmall: TextStyle(
         fontFamily: 'Switzer',
@@ -61,13 +61,13 @@ ThemeData buildCustomThemeData(BuildContext context) {
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
         fontSize: 10.0,
-        color: CoffeemachineColors.fontColorLight,
+        color: AppColors.fontColorLight,
       ),
       labelMedium: const TextStyle(
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
         fontSize: 12.0,
-        color: CoffeemachineColors.fontColorDark,
+        color: AppColors.fontColorDark,
       ),
       labelLarge: const TextStyle(
         fontFamily: 'Roboto',

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mqtt_client/mqtt_client.dart';
@@ -55,23 +56,22 @@ class MqttClient {
       await _client.connect(_username, _passwd);
     } on NoConnectionException catch (e) {
       // Raised by the client when connection fails.
-      print('MqttClient::client exception - $e');
+      log('MqttClient::client exception - $e');
       _client.disconnect();
       rethrow;
     } on SocketException catch (e) {
       // Raised by the socket layer
-      print('MqttClient::socket exception - $e');
+      log('MqttClient::socket exception - $e');
       _client.disconnect();
       rethrow;
     }
 
     /// Connection state message
     if (_client.connectionStatus?.state == MqttConnectionState.connected) {
-      print('MqttClient::Mosquitto client connected');
+      log('MqttClient::Mosquitto client connected');
     } else {
       /// Use status here rather than state if you also want the broker return code.
-      print(
-          'MqttClient::ERROR Mosquitto client connection failed - disconnecting, status is ${_client.connectionStatus}');
+      log('MqttClient::ERROR Mosquitto client connection failed - disconnecting, status is ${_client.connectionStatus}');
       _client.disconnect();
     }
   }

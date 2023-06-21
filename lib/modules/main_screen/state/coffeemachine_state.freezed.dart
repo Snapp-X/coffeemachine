@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'main_screen_state.dart';
+part of 'coffeemachine_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$MainScreenState {
+mixin _$CoffeemachineState {
   bool get machineOnline => throw _privateConstructorUsedError;
   bool get isErrorState => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
@@ -26,15 +26,15 @@ mixin _$MainScreenState {
   double? get varI => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MainScreenStateCopyWith<MainScreenState> get copyWith =>
+  $CoffeemachineStateCopyWith<CoffeemachineState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MainScreenStateCopyWith<$Res> {
-  factory $MainScreenStateCopyWith(
-          MainScreenState value, $Res Function(MainScreenState) then) =
-      _$MainScreenStateCopyWithImpl<$Res, MainScreenState>;
+abstract class $CoffeemachineStateCopyWith<$Res> {
+  factory $CoffeemachineStateCopyWith(
+          CoffeemachineState value, $Res Function(CoffeemachineState) then) =
+      _$CoffeemachineStateCopyWithImpl<$Res, CoffeemachineState>;
   @useResult
   $Res call(
       {bool machineOnline,
@@ -48,9 +48,9 @@ abstract class $MainScreenStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MainScreenStateCopyWithImpl<$Res, $Val extends MainScreenState>
-    implements $MainScreenStateCopyWith<$Res> {
-  _$MainScreenStateCopyWithImpl(this._value, this._then);
+class _$CoffeemachineStateCopyWithImpl<$Res, $Val extends CoffeemachineState>
+    implements $CoffeemachineStateCopyWith<$Res> {
+  _$CoffeemachineStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,11 +107,11 @@ class _$MainScreenStateCopyWithImpl<$Res, $Val extends MainScreenState>
 }
 
 /// @nodoc
-abstract class _$$_MainScreenStateCopyWith<$Res>
-    implements $MainScreenStateCopyWith<$Res> {
-  factory _$$_MainScreenStateCopyWith(
-          _$_MainScreenState value, $Res Function(_$_MainScreenState) then) =
-      __$$_MainScreenStateCopyWithImpl<$Res>;
+abstract class _$$_CoffeemachineStateCopyWith<$Res>
+    implements $CoffeemachineStateCopyWith<$Res> {
+  factory _$$_CoffeemachineStateCopyWith(_$_CoffeemachineState value,
+          $Res Function(_$_CoffeemachineState) then) =
+      __$$_CoffeemachineStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -126,11 +126,11 @@ abstract class _$$_MainScreenStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MainScreenStateCopyWithImpl<$Res>
-    extends _$MainScreenStateCopyWithImpl<$Res, _$_MainScreenState>
-    implements _$$_MainScreenStateCopyWith<$Res> {
-  __$$_MainScreenStateCopyWithImpl(
-      _$_MainScreenState _value, $Res Function(_$_MainScreenState) _then)
+class __$$_CoffeemachineStateCopyWithImpl<$Res>
+    extends _$CoffeemachineStateCopyWithImpl<$Res, _$_CoffeemachineState>
+    implements _$$_CoffeemachineStateCopyWith<$Res> {
+  __$$_CoffeemachineStateCopyWithImpl(
+      _$_CoffeemachineState _value, $Res Function(_$_CoffeemachineState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -145,7 +145,7 @@ class __$$_MainScreenStateCopyWithImpl<$Res>
     Object? varD = freezed,
     Object? varI = freezed,
   }) {
-    return _then(_$_MainScreenState(
+    return _then(_$_CoffeemachineState(
       machineOnline: null == machineOnline
           ? _value.machineOnline
           : machineOnline // ignore: cast_nullable_to_non_nullable
@@ -184,8 +184,8 @@ class __$$_MainScreenStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MainScreenState implements _MainScreenState {
-  const _$_MainScreenState(
+class _$_CoffeemachineState implements _CoffeemachineState {
+  const _$_CoffeemachineState(
       {required this.machineOnline,
       required this.isErrorState,
       required this.isLoading,
@@ -214,14 +214,14 @@ class _$_MainScreenState implements _MainScreenState {
 
   @override
   String toString() {
-    return 'MainScreenState(machineOnline: $machineOnline, isErrorState: $isErrorState, isLoading: $isLoading, currentTemperature: $currentTemperature, targetTemperature: $targetTemperature, varP: $varP, varD: $varD, varI: $varI)';
+    return 'CoffeemachineState(machineOnline: $machineOnline, isErrorState: $isErrorState, isLoading: $isLoading, currentTemperature: $currentTemperature, targetTemperature: $targetTemperature, varP: $varP, varD: $varD, varI: $varI)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MainScreenState &&
+            other is _$_CoffeemachineState &&
             (identical(other.machineOnline, machineOnline) ||
                 other.machineOnline == machineOnline) &&
             (identical(other.isErrorState, isErrorState) ||
@@ -244,12 +244,13 @@ class _$_MainScreenState implements _MainScreenState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MainScreenStateCopyWith<_$_MainScreenState> get copyWith =>
-      __$$_MainScreenStateCopyWithImpl<_$_MainScreenState>(this, _$identity);
+  _$$_CoffeemachineStateCopyWith<_$_CoffeemachineState> get copyWith =>
+      __$$_CoffeemachineStateCopyWithImpl<_$_CoffeemachineState>(
+          this, _$identity);
 }
 
-abstract class _MainScreenState implements MainScreenState {
-  const factory _MainScreenState(
+abstract class _CoffeemachineState implements CoffeemachineState {
+  const factory _CoffeemachineState(
       {required final bool machineOnline,
       required final bool isErrorState,
       required final bool isLoading,
@@ -257,7 +258,7 @@ abstract class _MainScreenState implements MainScreenState {
       required final double? targetTemperature,
       required final double? varP,
       required final double? varD,
-      required final double? varI}) = _$_MainScreenState;
+      required final double? varI}) = _$_CoffeemachineState;
 
   @override
   bool get machineOnline;
@@ -277,6 +278,6 @@ abstract class _MainScreenState implements MainScreenState {
   double? get varI;
   @override
   @JsonKey(ignore: true)
-  _$$_MainScreenStateCopyWith<_$_MainScreenState> get copyWith =>
+  _$$_CoffeemachineStateCopyWith<_$_CoffeemachineState> get copyWith =>
       throw _privateConstructorUsedError;
 }

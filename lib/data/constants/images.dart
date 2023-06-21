@@ -1,5 +1,5 @@
-class CoffeemachineImages {
-  CoffeemachineImages._();
+class AppImages {
+  AppImages._();
 
   // Single Control
   static const decreaseButton = 'assets/images/decrease_button.webp';
