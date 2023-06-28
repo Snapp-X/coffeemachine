@@ -1,4 +1,4 @@
-import 'package:coffeemachine/data/repositories/mqtt_client.dart';
+import 'package:coffeemachine/data/repositories/mqtt_repository.dart';
 import 'package:coffeemachine/modules/main_screen/widgets/single_control.dart';
 import 'package:coffeemachine/modules/main_screen/widgets/status_display.dart';
 import 'package:flutter/material.dart';

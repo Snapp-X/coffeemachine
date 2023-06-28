@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:coffeemachine/data/repositories/mqtt_client.dart';
+import 'package:coffeemachine/data/repositories/mqtt_repository.dart';
+import 'package:coffeemachine/data/repositories/mqtt_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -21,15 +22,15 @@ class CoffeemachineState with _$CoffeemachineState {
   }) = _CoffeemachineState;
 }
 
-final coffeemachineStateProvider = StateNotifierProvider.autoDispose<
-        CoffeemachineStateMgmt, CoffeemachineState>(
-    (ref) => CoffeemachineStateMgmt(ref.read(mqttClientProvider))..init());
+final coffeemachineStateProvider = StateNotifierProvider
+    .autoDispose<CoffeemachineStateMgmt, CoffeemachineState>((ref) =>
+        CoffeemachineStateMgmt(ref.read(mqttClientProvider(true)))..init());
 
 class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
-  final MqttClient _mqttClient;
+  final MqttRepository _mqttRepository;
   bool isFirstRun = true;
   DateTime _lastUpdate = DateTime.now();
-  CoffeemachineStateMgmt(this._mqttClient)
+  CoffeemachineStateMgmt(this._mqttRepository)
       : super(const CoffeemachineState(
           machineOnline: false,
           isErrorState: false,
@@ -59,8 +60,9 @@ class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
       MqttValue.varD,
     ];
     try {
-      await _mqttClient.connect();
-      await _mqttClient.subscribeTo(subscriptionTopics, subscriptionCallback);
+      await _mqttRepository.connect();
+      await _mqttRepository.subscribeTo(
+          subscriptionTopics, subscriptionCallback);
       state = state.copyWith(isInitial: false);
     } catch (e) {
       state = state.copyWith(isErrorState: true);
@@ -90,7 +92,7 @@ class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
 
     if (currentValue != null) {
       final newValue = (currentValue + value).toStringAsFixed(0);
-      _mqttClient.publish(newValue, topic);
+      _mqttRepository.publish(newValue, topic);
     }
   }
 
@@ -100,24 +102,24 @@ class CoffeemachineStateMgmt extends StateNotifier<CoffeemachineState> {
     ///When starting for the first time, the last known values will be received, even if the machine is offline,
     ///We can use that behaviour for our PID values, but we don't want to read the last known temperature
 
-    if (isFirstRun && topicSuffix == MqttClient.currentTemperature) {
+    if (isFirstRun && topicSuffix == MqttRepository.currentTemperature) {
       isFirstRun = false;
       return;
     }
     switch (topicSuffix) {
-      case MqttClient.currentTemperature:
+      case MqttRepository.currentTemperature:
         currentTemperatureCallback(messageValue);
         break;
-      case MqttClient.targetTemperature:
+      case MqttRepository.targetTemperature:
         targetTemperatureCallback(messageValue);
         break;
-      case MqttClient.varP:
+      case MqttRepository.varP:
         varPCallback(messageValue);
         break;
-      case MqttClient.varI:
+      case MqttRepository.varI:
         varICallback(messageValue);
         break;
-      case MqttClient.varD:
+      case MqttRepository.varD:
         varDCallback(messageValue);
         break;
       default:

@@ -7,9 +7,7 @@ final temperaturesStreamProvider =
   final currentTemperature = coffeemachineState.currentTemperature;
   final targetTemperature = coffeemachineState.targetTemperature;
 
-  yield* Stream.periodic(const Duration(seconds: 1), (count) {
-    return Temperatures(currentTemperature, targetTemperature);
-  });
+  yield Temperatures(currentTemperature, targetTemperature);
 });
 
 class Temperatures {
