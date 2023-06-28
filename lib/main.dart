@@ -7,6 +7,8 @@ void main() {
   runApp(const ProviderScope(child: FlutterCoffemachine()));
 }
 
+// on line 27 of coffeemachine_state_mgmt.dart you can turn the demo mode on/off!
+
 class FlutterCoffemachine extends StatelessWidget {
   const FlutterCoffemachine({super.key});
 
